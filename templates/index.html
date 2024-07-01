@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Library{% endblock %}
+{% block content %}
+    <h1>My Library</h1>
+    {% if not books %}<p>Library is empty</p>{% endif %}
+    <ul>
+    {% for item in books %}
+    <li><a href="{{ url_for('delete', id=item.id) }}">Delete</a> {{ item["title"] }} - {{ item["author"] }} - {{ item["rating"] }}/10 <button><a href="{{ url_for('edit', id=item.id) }}">Update Rating</a></button></li>
+    {% endfor %}
+    </ul>
+
+
+    <a href="{{ url_for('add') }}">Add New Book</a>
+
+{% endblock %}
